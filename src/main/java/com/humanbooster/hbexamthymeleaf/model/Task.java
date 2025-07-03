@@ -19,8 +19,7 @@ public class Task extends GenericModel<Long> {
     @NotBlank(message = "Le titre ne peut pas être vide")
     private String title;
 
-    @NotNull(message = "Une tâche doit avoir un statut")
-    private TaskStatus status;
+    private TaskStatus status = TaskStatus.TODO;
 
     @NotNull(message = "Une tâche doit ête assignée à un utilisateur")
     private User assignee;

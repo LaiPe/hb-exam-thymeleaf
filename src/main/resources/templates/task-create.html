@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr" th:replace="fragments/layout :: layout(~{::title},~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle tâche</title>
+</head>
+<body>
+
+<section>
+    <h2>Formulaire pour une nouvelle tâche</h2>
+    <form method="post" th:action="@{/tasks/create}" th:object="${task}">
+        <div>
+            <label for="title">Titre</label>
+            <input type="text" id="title" th:field="*{title}">
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red"></p>
+        </div>
+        <div>
+            <label for="project">Projet</label>
+            <select id="project" name="projectId" required>
+                <option value="">Sélectionnez un projet</option>
+                <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.name}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="assignee">Utilisateur assignée</label>
+            <select id="assignee" th:field="*{assignee.id}" required>
+                <option value="">Sélectionnez un utilisateur</option>
+                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('assignee')}" th:errors="*{assignee}" style="color: red"></p>
+        </div>
+
+        <!-- Display global errors -->
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="error : ${#fields.globalErrors()}" th:text="${error}" style="color: red"></p>
+        </div>
+
+        <button type="submit">Créer la nouvelle tâche</button>
+    </form>
+</section>
+
+</body>
+</html>
