@@ -5,17 +5,18 @@ import com.humanbooster.hbexamthymeleaf.model.Task;
 import com.humanbooster.hbexamthymeleaf.model.TaskStatus;
 import com.humanbooster.hbexamthymeleaf.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StaticData {
 
-    public static List<User> users = List.of(
+    public static List<User> users = new ArrayList<>(List.of(
             new User(1L,"leopey"),
             new User(2L, "quentcas"),
             new User(3L, "bilelalm")
-    );
+    ));
 
-    public static List<Task> tasks = List.of(
+    public static List<Task> tasks = new ArrayList<>(List.of(
             new Task(
                     1L,
                     "Tâche super cool à faire",
@@ -46,9 +47,9 @@ public class StaticData {
                     TaskStatus.TODO,
                     users.get(1)
             )
-    );
+    ));
 
-    public static List<Project> projects = List.of(
+    public static List<Project> projects = new ArrayList<>(List.of(
             new Project(
                     1L,
                     "Projet trop cool",
@@ -61,7 +62,7 @@ public class StaticData {
                     users.get(1),
                     List.of(tasks.get(3), tasks.get(4))
             )
-    );
+    ));
 
 
 }

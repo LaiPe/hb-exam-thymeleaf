@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" th:replace="fragments/layout :: layout(~{::title},~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${project.name}"></title>
+</head>
+<body>
+    <section>
+        <h2 th:text="${project.name}">Projet blabla</h2>
+        <p th:text="'Crée par : ' + ${project.creator.username}">michel patatra</p>
+
+        <h3>Tâches du projet:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Statut</th>
+                    <th>Responsable</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="task : ${project.tasks}">
+                    <td th:text="${task.title}"></td>
+                    <td th:text="${task.status}"></td>
+                    <td th:text="${task.assignee.username}"></td>
+                    <td>
+                        <a th:unless="${#strings.equals(task.status,'DONE')}" th:href="@{/tasks/{id}/next-status}">Prochain statut</a>
+                        <span th:if="${#strings.equals(task.status,'DONE')}">Statut final</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</body>
+</html>

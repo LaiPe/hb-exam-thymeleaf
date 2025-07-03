@@ -24,6 +24,7 @@ public abstract class GenericService<T extends GenericModel<ID>,ID> {
     }
 
     public T addEntity(T entity) {
+        entity.setId((ID) Long.valueOf(entities.size() + 1));
         entities.add(entity);
         return entity;
     }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr" th:replace="fragments/layout :: layout(~{::title},~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Projets</title>
+</head>
+<body>
+
+    <section>
+        <h2>Projets</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom du projet</th>
+                    <th>Nom du créateur</th>
+                    <th>Nombre de tâches</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="project : ${projects}">
+                    <td th:text="${project.id}">1</td>
+                    <td th:text="${project.name}">Nom projet</td>
+                    <td th:text="${project.creator.username}">Nom user</td>
+                    <td th:text="${#lists.size(project.tasks)}">3</td>
+                    <td><a th:href="@{/projects/{id} (id=${project.id})}">Vers les détails</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>
