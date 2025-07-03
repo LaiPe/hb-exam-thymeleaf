@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr" th:fragment="layout(title, content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Page</title>
+</head>
+<body>
+    <header>
+        <h1>QueryPad</h1>
+        <nav>
+            <a th:href="@{/}">Accueil</a>
+            <a th:href="@{/users}">Utilisateurs</a>
+            <a th:href="@{/projects}">Projets</a>
+            <a th:href="@{/projects/add}">Nouveau projet</a>
+            <a th:href="@{/tasks/add}">Nouvelle tâche</a>
+        </nav>
+    </header>
+    <main>
+        <div th:replace="${content}"></div>
+    </main>
+    
+</body>
+</html>
